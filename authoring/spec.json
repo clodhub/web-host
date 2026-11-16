@@ -1,6 +1,6 @@
 {
   "name": "web-host",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "title": "Web host",
   "description": "Installable web application shell: manifest, page, service worker, headers, build configuration and the install banner, rendered from typed settings.",
   "facilities": [
@@ -82,6 +82,7 @@
     "node": "26.5.0"
   },
   "platforms": [
+    "server",
     "web"
   ],
   "suites": [
@@ -104,5 +105,165 @@
     "updates": "Patch updates replace the owned files without migrating data; the service worker never caches, so a new deployment reaches installed copies at once. Removal deletes the owned sources and the application's imports; no application data is held. "
   },
   "agentInstructions": "Select `ourapps-ae/web-host` when the recipe's targets include `web`. Connect the `theme` requirement to the theme component so colour names resolve. Pass the answers for application name, short name, colours, icon and web address as settings. Provide the 512 and 192 pixel icons in the application's `public/` folder.",
-  "developerInstructions": "Supply the application's own `index.html` (the body and `<script type=\"module\" src=\"/src/main.ts\">`), `src/main.ts`, screens and the two icon files in `public/`. Its `vite.config.ts` returns `webHostConfig({ mode, root, settings: webHostSettings, colours })` (`webHostSettings` from the installed `web/settings.ts`, which aepm renders). Then `vite build` (or `vite build --mode desktop` for the desktop wrapper). Serve `dist/` over https at the web address. Supply no accounts or keys to this component; the hosting account is configured where the files are published. To check installability open the deployed address in Chrome (Application panel, Manifest) or Safari (Share, Add to Home Screen)."
+  "developerInstructions": "Supply the application's own `index.html` (the body and `<script type=\"module\" src=\"/src/main.ts\">`), `src/main.ts`, screens and the two icon files in `public/`. Its `vite.config.ts` returns `webHostConfig({ mode, root, settings: webHostSettings, colours })` (`webHostSettings` from the installed `web/settings.ts`, which aepm renders). Then `vite build` (or `vite build --mode desktop` for the desktop wrapper). Serve `dist/` over https at the web address. Supply no accounts or keys to this component; the hosting account is configured where the files are published. To check installability open the deployed address in Chrome (Application panel, Manifest) or Safari (Share, Add to Home Screen).",
+  "classes": [
+    {
+      "reference": {
+        "name": "ourapps-ae/web-host-class",
+        "version": "1.0.0",
+        "digest": "d17b96739f006f849bdaeb88ba95ed3ae2fa2f6bb3f2ba58ba2cdb205bb7dc42"
+      },
+      "descriptor": {
+        "format": 1,
+        "name": "ourapps-ae/web-host-class",
+        "version": "1.0.0",
+        "provides": [
+          {
+            "type": "ae/web-shell",
+            "version": "1.0.0",
+            "path": "classes/web-host-class/web-shell.json",
+            "modules": {
+              "web": [
+                "web/index.ts"
+              ],
+              "server": [
+                "server/index.ts"
+              ],
+              "windows": [
+                "web/index.ts"
+              ]
+            }
+          }
+        ],
+        "requires": [
+          {
+            "type": "ae/theme",
+            "version": "1.0.0"
+          }
+        ],
+        "settings": {
+          "type": "object",
+          "properties": {
+            "applicationId": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]{0,63}$"
+            },
+            "applicationName": {
+              "type": "string",
+              "pattern": "^[A-Za-z][A-Za-z0-9 -]{0,63}$"
+            },
+            "backgroundColour": {
+              "type": "string",
+              "pattern": "^[A-Za-z][A-Za-z0-9_]{0,63}$"
+            },
+            "shortName": {
+              "type": "string",
+              "pattern": "^[A-Za-z][A-Za-z0-9 -]{0,63}$"
+            },
+            "themeColour": {
+              "type": "string",
+              "pattern": "^[A-Za-z][A-Za-z0-9_]{0,63}$"
+            },
+            "webAddress": {
+              "type": "string",
+              "pattern": "^https?://[A-Za-z0-9.-]+(:[0-9]{1,5})?(/[A-Za-z0-9_/-]*)?$"
+            }
+          },
+          "required": [
+            "applicationId",
+            "applicationName",
+            "backgroundColour",
+            "shortName",
+            "themeColour",
+            "webAddress"
+          ],
+          "additionalProperties": false
+        },
+        "inventory": [
+          {
+            "path": "classes/web-host-class/check.mjs",
+            "digest": "74e355767af6d99b3de8aeecdd74e22c79a94eab7d3141573aab7720d6c79030"
+          },
+          {
+            "path": "classes/web-host-class/runtime.mjs",
+            "digest": "7440f3891614c423f74668cb5a2445fea58bbfa4d7c740c8e8a855d1d9300d43"
+          },
+          {
+            "path": "classes/web-host-class/web-shell.json",
+            "digest": "96438dd6623fe70381116073063aefe7a95aafa0c22cfd2e4d28ed1388eb18ab"
+          }
+        ],
+        "verification": [
+          {
+            "id": "shared",
+            "root": "package",
+            "argv": [
+              "node",
+              "classes/web-host-class/check.mjs"
+            ],
+            "cwd": ".",
+            "prepare": [],
+            "tools": {
+              "node": "26.5"
+            },
+            "fixtures": [
+              "classes/web-host-class/check.mjs"
+            ],
+            "locks": [],
+            "network": false,
+            "timeoutSeconds": 60,
+            "expectedExit": 0,
+            "scope": "required-local",
+            "requirements": []
+          }
+        ]
+      }
+    }
+  ],
+  "implements": [
+    {
+      "name": "ourapps-ae/web-host-class",
+      "version": "1.0.0",
+      "digest": "d17b96739f006f849bdaeb88ba95ed3ae2fa2f6bb3f2ba58ba2cdb205bb7dc42"
+    }
+  ],
+  "upstream": [],
+  "compatibility": {
+    "runtimes": {
+      "node": ">=26.5.0 <27.0.0"
+    },
+    "frameworks": {},
+    "dependencies": [],
+    "styles": {
+      "scope": "none",
+      "namespaces": [],
+      "conflicts": []
+    }
+  },
+  "maintenance": {
+    "owners": [
+      "Level N Ltd"
+    ],
+    "contact": "https://github.com/ourapps-ae/web-host/issues",
+    "repository": "https://github.com/ourapps-ae/web-host",
+    "updates": {
+      "source": "https://github.com/ourapps-ae/web-host/releases",
+      "strategy": "manual"
+    }
+  },
+  "supportedPlatforms": [
+    "server",
+    "web",
+    "windows"
+  ],
+  "licence": "Apache-2.0",
+  "licenceFile": "LICENCE",
+  "noticeFile": "NOTICE",
+  "templates": [
+    "implementation/web/settings.ts"
+  ],
+  "modules": {
+    "web": "web/index.ts",
+    "server": "server/index.ts"
+  }
 }

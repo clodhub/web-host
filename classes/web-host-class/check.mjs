@@ -1,0 +1,13 @@
+import { assert, load } from './runtime.mjs';
+const m = await load('server/index.ts');
+const settings = { applicationId: 'class-demo', applicationName: 'Class Demo', shortName: 'Demo', themeColour: 'primary', backgroundColour: 'background', iconPath: 'icon', webAddress: 'https://example.org' };
+const resolved = m.validateSettings(settings, { primary: '#123456', background: '#ffffff' });
+const text = m.renderManifest(resolved);
+const manifest = JSON.parse(text);
+assert.equal(manifest.name, 'Class Demo');
+assert.equal(manifest.theme_color, '#123456');
+assert.equal(manifest.background_color, '#ffffff');
+assert.equal(m.renderManifest(resolved), text);
+assert.throws(() => m.validateSettings({ ...settings, applicationId: '../bad' }));
+assert.ok(m.headTags(resolved).some(tag => tag.attrs?.rel === 'manifest'));
+assert.ok(!m.headTags(resolved, false).some(tag => tag.attrs?.rel === 'manifest'));
