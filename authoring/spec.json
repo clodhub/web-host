@@ -1,6 +1,6 @@
 {
   "name": "web-host",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "title": "Web host",
   "description": "Installable web application shell: manifest, page, service worker, headers, build configuration and the install banner, rendered from typed settings.",
   "facilities": [
@@ -110,13 +110,17 @@
     {
       "reference": {
         "name": "ourapps-ae/web-host-class",
-        "version": "1.0.0",
-        "digest": "d17b96739f006f849bdaeb88ba95ed3ae2fa2f6bb3f2ba58ba2cdb205bb7dc42"
+        "version": "1.1.0",
+        "digest": "3435beee79383a08ef26a41509c1dc99eabbde55a4950363c5b8e4797773d6a8"
       },
       "descriptor": {
-        "format": 1,
+        "format": 2,
         "name": "ourapps-ae/web-host-class",
-        "version": "1.0.0",
+        "version": "1.1.0",
+        "title": "Web host",
+        "summary": "The web client's page, installable manifest, install banner and build",
+        "category": "devices-and-hosts/web",
+        "presentation": "visual",
         "provides": [
           {
             "type": "ae/web-shell",
@@ -223,8 +227,8 @@
   "implements": [
     {
       "name": "ourapps-ae/web-host-class",
-      "version": "1.0.0",
-      "digest": "d17b96739f006f849bdaeb88ba95ed3ae2fa2f6bb3f2ba58ba2cdb205bb7dc42"
+      "version": "1.1.0",
+      "digest": "3435beee79383a08ef26a41509c1dc99eabbde55a4950363c5b8e4797773d6a8"
     }
   ],
   "upstream": [],
@@ -345,5 +349,40 @@
         "manual": "Without the package manager, install Node 26 from nodejs.org (the installer, or the zip or tar archive with its folder put first on PATH); on Linux also from the NodeSource repository."
       }
     ]
-  }
+  },
+  "release": {
+    "channel": "features",
+    "fixes": []
+  },
+  "images": [
+    {
+      "caption": "The banner where the browser offers installation: one tap on Add",
+      "height": 844,
+      "path": "images/install-prompt.png",
+      "platform": "web",
+      "width": 390
+    },
+    {
+      "caption": "The banner in Safari on iPhone, with the steps through Share",
+      "height": 844,
+      "path": "images/safari.png",
+      "platform": "web",
+      "width": 390
+    },
+    {
+      "caption": "The banner in an Android browser without an install prompt",
+      "height": 844,
+      "path": "images/android.png",
+      "platform": "web",
+      "width": 390
+    },
+    {
+      "caption": "The banner in an app's built-in browser, which cannot install: open in Safari first",
+      "height": 844,
+      "path": "images/in-app-browser.png",
+      "platform": "web",
+      "width": 390
+    }
+  ],
+  "vulnerabilityWaivers": []
 }
