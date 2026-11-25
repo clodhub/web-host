@@ -1,9 +1,9 @@
 # Web host instructions
 
 ## For the agent
-Select `ourapps-ae/web-host` when the recipe's targets include `web`. Connect the `theme` requirement to the theme component so colour names resolve. Pass the answers for application name, short name, colours, icon and web address as settings. Provide the 512 and 192 pixel icons in the application's `public/` folder.
+Select `clodhub/web-host` when the recipe's targets include `web`. Connect the `theme` requirement to the theme component so colour names resolve. Pass the answers for application name, short name, colours, icon and web address as settings. Provide the 512 and 192 pixel icons in the application's `public/` folder.
 
-- Select package `ourapps-ae/web-host` version `0.10.0`.
+- Select package `clodhub/web-host` version `0.11.0`.
 - Settings to configure:
   - `applicationId` (string, slug; required)
   - `applicationName` (string, label; required)
@@ -25,4 +25,4 @@ Supply the application's own `index.html` (the body and `<script type="module" s
 From the component directory:
 
 - `node --test tests/web.test.ts` (web, required-local; tools: node 26.5)
-- `python3 -m aepm review <digest> --store STORE --policy POLICY --trusted --allow-network` checks an archive fetched with `python3 -m aepm fetch ourapps-ae/web-host@VERSION --store STORE --from https://ourapps.app` and runs its suites.
+- `python3 -m aepm review <digest> --store STORE --policy POLICY --trusted --allow-network` checks an archive fetched with `python3 -m aepm fetch clodhub/web-host@VERSION --store STORE --from https://clodhub.com` and runs its suites.

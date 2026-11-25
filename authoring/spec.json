@@ -1,6 +1,6 @@
 {
   "name": "web-host",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "title": "Web host",
   "description": "Installable web application shell: manifest, page, service worker, headers, build configuration and the install banner, rendered from typed settings.",
   "facilities": [
@@ -79,7 +79,7 @@
   ],
   "dependencies": [],
   "tools": {
-    "node": "26.5.0"
+    "node": "26.5"
   },
   "platforms": [
     "server",
@@ -104,18 +104,18 @@
     "scenarios": "Safari on iPhone shows the Share instructions; Chrome on Android or desktop shows a one-tap Add button; an application already on the home screen or dismissed within three days shows nothing; the desktop wrapper skips the service worker and banner.",
     "updates": "Patch updates replace the owned files without migrating data; the service worker never caches, so a new deployment reaches installed copies at once. Removal deletes the owned sources and the application's imports; no application data is held. "
   },
-  "agentInstructions": "Select `ourapps-ae/web-host` when the recipe's targets include `web`. Connect the `theme` requirement to the theme component so colour names resolve. Pass the answers for application name, short name, colours, icon and web address as settings. Provide the 512 and 192 pixel icons in the application's `public/` folder.",
+  "agentInstructions": "Select `clodhub/web-host` when the recipe's targets include `web`. Connect the `theme` requirement to the theme component so colour names resolve. Pass the answers for application name, short name, colours, icon and web address as settings. Provide the 512 and 192 pixel icons in the application's `public/` folder.",
   "developerInstructions": "Supply the application's own `index.html` (the body and `<script type=\"module\" src=\"/src/main.ts\">`), `src/main.ts`, screens and the two icon files in `public/`. Its `vite.config.ts` returns `webHostConfig({ mode, root, settings: webHostSettings, colours })` (`webHostSettings` from the installed `web/settings.ts`, which aepm renders). Then `vite build` (or `vite build --mode desktop` for the desktop wrapper). Serve `dist/` over https at the web address. Supply no accounts or keys to this component; the hosting account is configured where the files are published. To check installability open the deployed address in Chrome (Application panel, Manifest) or Safari (Share, Add to Home Screen).",
   "classes": [
     {
       "reference": {
-        "name": "ourapps-ae/web-host-class",
+        "name": "clodhub/web-host-class",
         "version": "1.1.0",
-        "digest": "3435beee79383a08ef26a41509c1dc99eabbde55a4950363c5b8e4797773d6a8"
+        "digest": "0c427fad04bc5abecb994dd9888dec41f04de8ba1cc26e105ebb85f6f30253e8"
       },
       "descriptor": {
         "format": 2,
-        "name": "ourapps-ae/web-host-class",
+        "name": "clodhub/web-host-class",
         "version": "1.1.0",
         "title": "Web host",
         "summary": "The web client's page, installable manifest, install banner and build",
@@ -194,7 +194,7 @@
           },
           {
             "path": "classes/web-host-class/web-shell.json",
-            "digest": "96438dd6623fe70381116073063aefe7a95aafa0c22cfd2e4d28ed1388eb18ab"
+            "digest": "2640f964d23d37aca730d39efd7d22fce95034b64c937349f500b0452ea787f8"
           }
         ],
         "verification": [
@@ -226,9 +226,9 @@
   ],
   "implements": [
     {
-      "name": "ourapps-ae/web-host-class",
+      "name": "clodhub/web-host-class",
       "version": "1.1.0",
-      "digest": "3435beee79383a08ef26a41509c1dc99eabbde55a4950363c5b8e4797773d6a8"
+      "digest": "0c427fad04bc5abecb994dd9888dec41f04de8ba1cc26e105ebb85f6f30253e8"
     }
   ],
   "upstream": [],
@@ -248,10 +248,10 @@
     "owners": [
       "Level N Ltd"
     ],
-    "contact": "https://github.com/ourapps-ae/web-host/issues",
-    "repository": "https://github.com/ourapps-ae/web-host",
+    "contact": "https://github.com/clodhub/web-host/issues",
+    "repository": "https://github.com/clodhub/web-host",
     "updates": {
-      "source": "https://github.com/ourapps-ae/web-host/releases",
+      "source": "https://github.com/clodhub/web-host/releases",
       "strategy": "manual"
     }
   },
