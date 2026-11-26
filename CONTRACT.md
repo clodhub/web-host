@@ -23,7 +23,7 @@ The installer collects these settings and renders them into `web/settings.ts` (`
 - `implementation/web/public/sw.js` -> `components/web-host/web/public/sw.js`
 - `implementation/web/render.ts` -> `components/web-host/web/render.ts`
 - `implementation/web/runtime.ts` -> `components/web-host/web/runtime.ts`
-- `implementation/web/settings.ts` -> `components/web-host/web/settings.ts` (template: aepm renders it from the settings)
+- `implementation/web/settings.ts` -> `components/web-host/web/settings.ts` (template: clod renders it from the settings)
 - `implementation/web/package.json` -> `components/web-host/web/package.json` (marks the folder's modules as ES modules, so Vite loads them for the application's `vite.config.ts` without a warning)
 - `implementation/web/vite.ts` -> `components/web-host/web/vite.ts`
 
@@ -31,10 +31,10 @@ Dependencies: none.
 `tools.lock.json` pins verification tools: node 26.5. Licence wording remains deferred.
 
 ## Provided interfaces
-- `interfaces/web-shell.json` defines `web-shell` (ae/web-shell) version 1.0.0 as an OpenRPC 1.3.2 document: one method per exported function (`validateSettings`, `resolveColour`, `renderManifest`, `renderHeaders`, `headTags`, `webHostConfig`, `startShell`, `browserHost`, `startInstallBanner`, `bannerKind`), its parameters and result as JSON Schema 2020-12, and `SettingsError` where a setting breaks its grammar.
+- `interfaces/web-shell.json` defines `web-shell` (com.clodhub/web-shell) version 1.0.0 as an OpenRPC 1.3.2 document: one method per exported function (`validateSettings`, `resolveColour`, `renderManifest`, `renderHeaders`, `headTags`, `webHostConfig`, `startShell`, `browserHost`, `startInstallBanner`, `bannerKind`), its parameters and result as JSON Schema 2020-12, and `SettingsError` where a setting breaks its grammar.
 
 ## Required interfaces
-- `theme` (ae/theme) version 1.0.0, supplied by the recipe or application. `interfaces/required-theme.json` is a copy of the theme component's interface document; web-host uses its `colourTable` result (build time) for `themeColour` and `backgroundColour`.
+- `theme` (com.clodhub/theme) version 1.0.0, supplied by the recipe or application. `interfaces/required-theme.json` is a copy of the theme component's interface document; web-host uses its `colourTable` result (build time) for `themeColour` and `backgroundColour`.
 
 ## Integration
 The application's `vite.config.ts` returns `webHostConfig({ mode, root, settings: webHostSettings, colours })` from `web/vite.ts`, with `webHostSettings` from the installed `web/settings.ts` and `colours` the colour table of the connected theme; it may add its own fields (for example `resolve.alias`). The build then has the page head, and the web build `manifest.webmanifest`, `sw.js` and `_headers`; the desktop build (`--mode desktop`) has the head without the manifest link and writes `dist-desktop/`. The application's `index.html` holds the page body and `<script type="module" src="/src/main.ts">`. In the application's main module call `startShell(browserHost(), {desktop})` from `web/runtime.ts` once; it registers `./sw.js` and starts the install banner, and does neither when `desktop` is true. The application keeps its own screens, art, strings and its `src/main.ts` entry. `examples/consumer.ts` does both steps without a game.

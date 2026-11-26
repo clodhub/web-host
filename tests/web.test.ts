@@ -85,7 +85,7 @@ test("headers keep the application out of search results", () => {
   assert.equal(renderHeaders(), "/*\n  X-Robots-Tag: noindex\n");
 });
 
-test("settings.ts is rendered by aepm at install from every setting, each in a quoted string", { skip: !existsSync(new URL("../component.json", import.meta.url)) && "component.json is not in this copy" }, () => {
+test("settings.ts is rendered by clod at install from every setting, each in a quoted string", { skip: !existsSync(new URL("../component.json", import.meta.url)) && "component.json is not in this copy" }, () => {
   const manifest = JSON.parse(readFileSync(new URL("../component.json", import.meta.url), "utf8"));
   assert.deepEqual(manifest.artefacts.find((item: { source: string }) => item.source === "implementation/web/settings.ts"),
     { source: "implementation/web/settings.ts", destination: "components/web-host/web/settings.ts", template: true, executable: false });

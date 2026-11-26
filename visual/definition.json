@@ -1,17 +1,17 @@
 {
-  "id": "clodhub.web-host",
+  "id": "com.clodhub.web-host",
   "name": "Web host",
   "kind": "component",
   "status": "example",
-  "package": "clodhub/web-host",
-  "version": "0.11.0",
+  "package": "pkg:clod/com.clodhub/web-host",
+  "version": "0.12.0",
   "ports": [
     {
       "id": "theme",
       "name": "Theme",
       "direction": "input",
       "kind": "interface",
-      "type": "ae/theme",
+      "type": "com.clodhub/theme",
       "version": "1.0.0",
       "required": true,
       "cardinality": "one"
@@ -21,7 +21,7 @@
       "name": "Web shell",
       "direction": "output",
       "kind": "interface",
-      "type": "ae/web-shell",
+      "type": "com.clodhub/web-shell",
       "version": "1.0.0"
     }
   ],

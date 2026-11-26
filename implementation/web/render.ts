@@ -12,7 +12,7 @@ export interface WebShellSettings {
 
 export class SettingsError extends Error {}
 
-// The same grammars aepm applies to collected string settings.
+// The same grammars clod applies to collected string settings.
 const GRAMMARS = {
   identifier: /^[A-Za-z][A-Za-z0-9_]{0,63}$/,
   slug: /^[a-z][a-z0-9-]{0,63}$/,

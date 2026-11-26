@@ -1,9 +1,9 @@
 {
   "openrpc": "1.3.2",
   "info": {
-    "title": "ae/web-shell",
+    "title": "com.clodhub/web-shell",
     "version": "1.0.0",
-    "description": "Installable web application shell (TypeScript modules web/render.ts, web/vite.ts, web/runtime.ts and web/install-banner.ts; web/settings.ts holds the settings aepm renders at install). Methods are exported functions called in-process; render and Vite configuration functions run at build time under Node, startShell and browserHost in the browser.",
+    "description": "Installable web application shell (TypeScript modules web/render.ts, web/vite.ts, web/runtime.ts and web/install-banner.ts; web/settings.ts holds the settings clod renders at install). Methods are exported functions called in-process; render and Vite configuration functions run at build time under Node, startShell and browserHost in the browser.",
     "license": {
       "name": "Apache-2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0"

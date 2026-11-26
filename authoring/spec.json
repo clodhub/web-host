@@ -1,6 +1,7 @@
 {
   "name": "web-host",
-  "version": "0.11.0",
+  "version": "0.12.0",
+  "sourceRevision": "19905b75dbea89fbfd424d67fe26c81aaed0e018",
   "title": "Web host",
   "description": "Installable web application shell: manifest, page, service worker, headers, build configuration and the install banner, rendered from typed settings.",
   "facilities": [
@@ -12,7 +13,7 @@
   "provides": [
     {
       "id": "web-shell",
-      "type": "ae/web-shell",
+      "type": "com.clodhub/web-shell",
       "version": "1.0.0",
       "path": "interfaces/web-shell.json"
     }
@@ -20,7 +21,7 @@
   "requires": [
     {
       "id": "theme",
-      "type": "ae/theme",
+      "type": "com.clodhub/theme",
       "version": "1.0.0",
       "path": "interfaces/required-theme.json"
     }
@@ -104,18 +105,18 @@
     "scenarios": "Safari on iPhone shows the Share instructions; Chrome on Android or desktop shows a one-tap Add button; an application already on the home screen or dismissed within three days shows nothing; the desktop wrapper skips the service worker and banner.",
     "updates": "Patch updates replace the owned files without migrating data; the service worker never caches, so a new deployment reaches installed copies at once. Removal deletes the owned sources and the application's imports; no application data is held. "
   },
-  "agentInstructions": "Select `clodhub/web-host` when the recipe's targets include `web`. Connect the `theme` requirement to the theme component so colour names resolve. Pass the answers for application name, short name, colours, icon and web address as settings. Provide the 512 and 192 pixel icons in the application's `public/` folder.",
-  "developerInstructions": "Supply the application's own `index.html` (the body and `<script type=\"module\" src=\"/src/main.ts\">`), `src/main.ts`, screens and the two icon files in `public/`. Its `vite.config.ts` returns `webHostConfig({ mode, root, settings: webHostSettings, colours })` (`webHostSettings` from the installed `web/settings.ts`, which aepm renders). Then `vite build` (or `vite build --mode desktop` for the desktop wrapper). Serve `dist/` over https at the web address. Supply no accounts or keys to this component; the hosting account is configured where the files are published. To check installability open the deployed address in Chrome (Application panel, Manifest) or Safari (Share, Add to Home Screen).",
+  "agentInstructions": "Select `pkg:clod/com.clodhub/web-host` when the recipe's targets include `web`. Connect the `theme` requirement to the theme component so colour names resolve. Pass the answers for application name, short name, colours, icon and web address as settings. Provide the 512 and 192 pixel icons in the application's `public/` folder.",
+  "developerInstructions": "Supply the application's own `index.html` (the body and `<script type=\"module\" src=\"/src/main.ts\">`), `src/main.ts`, screens and the two icon files in `public/`. Its `vite.config.ts` returns `webHostConfig({ mode, root, settings: webHostSettings, colours })` (`webHostSettings` from the installed `web/settings.ts`, which clod renders). Then `vite build` (or `vite build --mode desktop` for the desktop wrapper). Serve `dist/` over https at the web address. Supply no accounts or keys to this component; the hosting account is configured where the files are published. To check installability open the deployed address in Chrome (Application panel, Manifest) or Safari (Share, Add to Home Screen).",
   "classes": [
     {
       "reference": {
-        "name": "clodhub/web-host-class",
+        "name": "pkg:clod/com.clodhub/web-host-class",
         "version": "1.1.0",
-        "digest": "0c427fad04bc5abecb994dd9888dec41f04de8ba1cc26e105ebb85f6f30253e8"
+        "digest": "339ef2b4aad771ff251d3cc16f2301cb0ee30493488d89a54f31b2e1e6cf13ad"
       },
       "descriptor": {
-        "format": 2,
-        "name": "clodhub/web-host-class",
+        "format": 3,
+        "name": "pkg:clod/com.clodhub/web-host-class",
         "version": "1.1.0",
         "title": "Web host",
         "summary": "The web client's page, installable manifest, install banner and build",
@@ -123,7 +124,7 @@
         "presentation": "visual",
         "provides": [
           {
-            "type": "ae/web-shell",
+            "type": "com.clodhub/web-shell",
             "version": "1.0.0",
             "path": "classes/web-host-class/web-shell.json",
             "modules": {
@@ -141,7 +142,7 @@
         ],
         "requires": [
           {
-            "type": "ae/theme",
+            "type": "com.clodhub/theme",
             "version": "1.0.0"
           }
         ],
@@ -190,11 +191,11 @@
           },
           {
             "path": "classes/web-host-class/runtime.mjs",
-            "digest": "7440f3891614c423f74668cb5a2445fea58bbfa4d7c740c8e8a855d1d9300d43"
+            "digest": "1d85f0dae92d5c6c859cd48a4211a933718ae3e168554a2b00806183c4b661f0"
           },
           {
             "path": "classes/web-host-class/web-shell.json",
-            "digest": "2640f964d23d37aca730d39efd7d22fce95034b64c937349f500b0452ea787f8"
+            "digest": "dd2c491a916899da46155a57c2b66d2f60a83744112edbbc496ba98c12e876c4"
           }
         ],
         "verification": [
@@ -226,9 +227,9 @@
   ],
   "implements": [
     {
-      "name": "clodhub/web-host-class",
+      "name": "pkg:clod/com.clodhub/web-host-class",
       "version": "1.1.0",
-      "digest": "0c427fad04bc5abecb994dd9888dec41f04de8ba1cc26e105ebb85f6f30253e8"
+      "digest": "339ef2b4aad771ff251d3cc16f2301cb0ee30493488d89a54f31b2e1e6cf13ad"
     }
   ],
   "upstream": [],
